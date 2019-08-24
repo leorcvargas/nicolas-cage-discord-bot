@@ -1,14 +1,11 @@
+require('dotenv').config();
 const Discord = require('discord.io');
-const logger = require('winston');
-const auth = require('./auth.json');
 
-logger.add(new logger.transports.Console(), {
-  colorize: true,
-  level: 'debug',
-});
+const logger = require('./logger');
+const giphy = require('./giphy');
 
 const bot = new Discord.Client({
-  token: auth.token,
+  token: process.env.DISCORD_TOKEN,
   autorun: true,
 });
 
@@ -18,11 +15,15 @@ bot.on('ready', () => {
 
 
 bot.on('message', (user, userID, channelID, message) => {
-  logger.info(message);
   if (message === '!nicolascage' || message === '!nc') {
-    bot.sendMessage({
-      to: channelID,
-      message: 'I\'m the best actor alive',
-    });
+    logger.info('command received');
+    giphy.getRandomGIF('nicolas cage')
+      .then((gif) => {
+        bot.sendMessage({
+          to: channelID,
+          message: gif,
+        });
+      })
+      .catch((error) => logger.error(error));
   }
 });
