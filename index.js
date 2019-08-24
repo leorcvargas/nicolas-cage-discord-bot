@@ -24,7 +24,7 @@ const initBot = () => {
         .then((gif) => {
           bot.sendMessage({
             to: channelID,
-            message: gif,
+            message: gif.url,
           });
         })
         .catch((error) => logger.error(error));
@@ -33,7 +33,7 @@ const initBot = () => {
 };
 
 const initServer = () => {
-  app.get('/', (req, res) => res.send);
+  app.get('/ping', async (req, res) => res.send('Pong!'));
 
   app.listen(process.env.PORT || 3000, () => {
     logger.info('Nicolas Cage Bot server running');

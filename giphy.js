@@ -10,9 +10,9 @@ const getRandomGIF = (term) => api.get('/gifs/search', {
 }).then(({ data }) => {
   const randomIndex = Math.floor(Math.random() * 20) + 1;
 
-  return data.data[randomIndex].url;
+  return data.data[randomIndex];
 })
-  .catch((error) => error);
+  .catch((error) => new Error(error.message));
 
 module.exports = {
   getRandomGIF,
