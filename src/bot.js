@@ -6,7 +6,9 @@ const giphy = require('./giphy');
 
 const takeScreenshotFromStock = async (stock) => {
   logger.info(`taking screenshot from stock ${stock}`);
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
   const page = await browser.newPage();
   await page.goto(`https://www.google.com/search?q=stock+${stock}`);
