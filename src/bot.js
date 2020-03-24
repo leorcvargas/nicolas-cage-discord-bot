@@ -51,6 +51,13 @@ const initBot = () => {
           to: channelID,
           message: gif.url,
         });
+      } else if (command === 'chewbacca') {
+        const gif = await giphy.getRandomGIF('chewbacca');
+
+        bot.sendMessage({
+          to: channelID,
+          message: gif.url,
+        });
       } else if (command === 'stock') {
         if (!args.length) {
           bot.sendMessage({
