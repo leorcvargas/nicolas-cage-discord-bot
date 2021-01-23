@@ -4,18 +4,13 @@
   "description": "Nicolas Cage bot for Discord",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "start:dev": "nodemon src/index.js",
+    "build": "npx rimraf dist && babel lib -d dist",
+    "start": "npm run build && node dist/index.js",
+    "start:dev": "nodemon --exec babel-node lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Leonardo Vargas (leocarvalho.vargas@gmail.com)",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^6.2.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "nodemon": "^1.19.1"
-  },
   "dependencies": {
     "axios": "^0.21.1",
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
@@ -23,5 +18,16 @@
     "express": "^4.17.1",
     "puppeteer": "^1.19.0",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^2.0.7"
   }
 }
