@@ -7,4 +7,5 @@ Nicolas Cage Discord Bot, thats it.
 - [ ] Add `!nc help` command;
 - [ ] Configure logger;
 - [ ] Find a place to host it for free without "cold-start";
+- [ ] Implement tests;
 - [ ] Write a decent README;
